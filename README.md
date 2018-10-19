@@ -19,3 +19,5 @@ Run it, mounting the candidate's repo folder:
 You might also need to expose the app's port:
 
 `docker run -it --mount type=bind,source=/<insert-your-path>/zofia_iksinska,target=/app -p 4567:4567 hiring`
+
+Then go to the mounted folder (`cd app`) and compile or deploy the app.
