@@ -3,13 +3,18 @@ FROM ubuntu:18.04
 RUN apt-get update \
  && apt-get install --yes \
       software-properties-common \
- && add-apt-repository ppa:linuxuprising/java \
+      wget \
  && apt-get update
 
-RUN echo oracle-java11-installer shared/accepted-oracle-license-v1-2 select true | /usr/bin/debconf-set-selections
+RUN wget https://download.java.net/java/ga/jdk11/openjdk-11_linux-x64_bin.tar.gz
+RUN sha256sum openjdk-11_linux-x64_bin.tar.gz
+RUN tar xzvf openjdk-11_linux-x64_bin.tar.gz
+RUN mkdir /usr/lib/jvm
+RUN mv jdk-11 /usr/lib/jvm/openjdk-11-manual-installation/
+RUN update-alternatives --install /usr/bin/java java /usr/lib/jvm/openjdk-11-manual-installation/bin/java 1
+RUN update-alternatives --install /usr/bin/javac javac /usr/lib/jvm/openjdk-11-manual-installation/bin/javac 1
+
 RUN apt-get install --yes \
-      oracle-java11-set-default \
-      oracle-java11-installer \
       maven \
       apt-transport-https
 
