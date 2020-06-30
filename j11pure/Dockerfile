@@ -17,7 +17,7 @@ RUN apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv 642AC823 \
       sbt
 
 RUN apt-get install -y curl \
- && curl -sL https://deb.nodesource.com/setup_9.x | bash - \
+ && curl -sL https://deb.nodesource.com/setup_12.x | bash - \
  && apt-get install -y nodejs \
  && curl -L https://www.npmjs.com/install.sh | sh
 
